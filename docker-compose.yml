@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+    nginx:
+        build: ./nginx
+        image: nginx
+        container_name: nginx_ex
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/config:/etc/nginx/config
+            - ./nginx/ssl:/etc/nginx/ssl
+    mariadb:
+        build: ./mariaDB
+        image: mariadb
+        container_name: mariadb_ex
+        ports:
+            - "3306:3306"
+        environment:
+            - MARIADB_ROOT_PASSWORD=1234
